@@ -1,6 +1,6 @@
 require_relative 'vertex.rb'
 require_relative 'edge.rb'
-require_relative 'queue.rb'
+require_relative 'container_structure.rb'
 
 require 'pry'
 
@@ -16,13 +16,13 @@ class Graph
   end
 
   def solve
-    queue = Queue.new
+    queue = ContainerStructure.new(false)
     r = vertices.first
     r.p = 1337
     queue.push(r)
     path = []
     while(!queue.empty?)
-      vertex = queue.pop
+      vertex = queue.remove
       vertex.neighbor_vertices.each do |neighbor|
         if neighbor.p == -1
           neighbor.p = vertex.p
