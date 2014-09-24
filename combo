@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby -x
 
-require_relative 'graph.rb'
+require_relative 'src/graph.rb'
 
-Graph.new("graph1").solve
+Graph.new("data/graph1").solve
