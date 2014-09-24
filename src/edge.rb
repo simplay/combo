@@ -11,7 +11,7 @@ class Edge
     @is_directional = is_directional
 
     @from.append_edge(self)
-    @to.append_edge(self)
+    @to.append_edge(self) unless is_directional
   end
 
   def to_s

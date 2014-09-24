@@ -15,8 +15,9 @@ class Graph
     to_s
   end
 
-  def solve
-    queue = ContainerStructure.new(false)
+  # @param in_bfs
+  def traverse(in_dfs)
+    queue = ContainerStructure.new(in_dfs)
     r = vertices.first
     r.p = 1337
     queue.push(r)
@@ -31,8 +32,9 @@ class Graph
       end
       path << vertex
     end
+    traversal_method = (in_dfs) ? "DFS" : "BFS"
 
-    puts "traversed path"
+    puts "traversed path (#{traversal_method})"
     path.each {|v| print(v.to_s + ' ')}
     puts "\n"
   end
@@ -93,9 +95,12 @@ class Graph
   # a vertex builder using data from current read line.
   # @param line [String] currently read line
   def build_edge(line)
-    vertices = @vertices.select do |vertex|
-      line.include? vertex.id
+
+
+    vertices = [0,1].map do |idx|
+      @vertices.select{|vertex| line[idx].eql?(vertex.id)}.first
     end
+
     vertices = sort_id_ascending_of(vertices) unless @is_directed
     @edges.add(Edge.new(vertices.first, vertices.last, @is_directed))
   end

@@ -7,7 +7,7 @@ class ContainerStructure
   def initialize(is_dfs=true)
     @container = []
     @remover = (is_dfs) ? :pop
-                            : :shift
+                        : :shift
   end
 
   # push item to the right
