@@ -15,6 +15,50 @@ class Graph
     to_s
   end
 
+  def dfs
+    queue = ContainerStructure.new(true)
+    r = vertices.first
+    queue.push(r)
+    path = []
+    while(!queue.empty?)
+      vertex = queue.remove
+      if vertex.p == -1
+        vertex.p = 1337
+        vertex.neighbor_vertices.each do |neighbor|
+          queue.push(neighbor)
+        end
+        path << vertex
+      end
+    end
+    traversal_method = "DFS"
+
+    puts "traversed path (#{traversal_method})"
+    path.each {|v| print(v.to_s + ' ')}
+    puts "\n"
+  end
+
+  def bfs
+    queue = ContainerStructure.new(false)
+    r = vertices.first
+    r.p = 1337
+    queue.push(r)
+    path = []
+    while(!queue.empty?)
+      vertex = queue.remove
+      vertex.neighbor_vertices.each do |neighbor|
+        if neighbor.p == -1
+          neighbor.p = vertex.p
+          queue.push(neighbor)
+        end
+      end
+      path << vertex
+    end
+    traversal_method = "BFS"
+    puts "traversed path (#{traversal_method})"
+    path.each {|v| print(v.to_s + ' ')}
+    puts "\n"
+  end
+
   # @param in_bfs
   def traverse(in_dfs)
     queue = ContainerStructure.new(in_dfs)

@@ -15,6 +15,12 @@ class ContainerStructure
     @container << item
   end
 
+  def update_target_by(target, value)
+    @container.each do |item|
+      item.p = value if item.eql?(target)
+    end
+  end
+
   # @return [Vertex] current top or first element.
   def remove
     @container.send(@remover)
