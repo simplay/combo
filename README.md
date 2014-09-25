@@ -1,6 +1,6 @@
 # Combo
 
-**Combo** is a demo collection of various graph-algorithms and data-structures written in Ruby. Currently it only shows a demo of a **BFS** ( Breadth First Search) and **DFS** ( Depth First Search) graph traversal. Currently, the starting vertex of the traversal is hardcoded (first vertex in graph's vertex-list). This will be user-specifyable soon. Information about the file format in order to define a graph can be found in the WIKI.
+**Combo** is a demo collection of various graph-algorithms and data-structures written in Ruby. Currently it only shows a demo of a **BFS** ( Breadth First Search) and **DFS** ( Depth First Search) graph traversal. Currently, the starting vertex of the traversal is hardcoded (first vertex in graph's vertex-list). This will be user-specifiable soon. Information about the file format in order to define a graph can be found in the WIKI.
 Combo is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
 ## Installation
