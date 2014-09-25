@@ -3,8 +3,4 @@
 require_relative 'src/graph.rb'
 
 g = Graph.new("data/graph1")
-#g.traverse(true)
-#g.traverse(false) # 1 2 4 3 6 5
-# g.bfs # 1 2 4 3 6 5
-g.dfs
-#g.traverse(true)
+g.demo_graph_traversals

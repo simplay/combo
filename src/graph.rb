@@ -1,6 +1,7 @@
 require_relative 'vertex.rb'
 require_relative 'edge.rb'
-require_relative 'container_structure.rb'
+require_relative 'my_stack.rb'
+require_relative 'my_queue.rb'
 
 require 'pry'
 
@@ -15,17 +16,16 @@ class Graph
     to_s
   end
 
-  def dfs
-    queue = ContainerStructure.new(true)
-    r = vertices.first
-    queue.push(r)
+  def dfs_traversal_at(r)
+    stack = MyStack.new
+    stack.push(r)
     path = []
-    while(!queue.empty?)
-      vertex = queue.remove
+    while(!stack.empty?)
+      vertex = stack.remove
       if vertex.p == -1
         vertex.p = 1337
         vertex.neighbor_vertices.each do |neighbor|
-          queue.push(neighbor)
+          stack.push(neighbor)
         end
         path << vertex
       end
@@ -37,9 +37,8 @@ class Graph
     puts "\n"
   end
 
-  def bfs
-    queue = ContainerStructure.new(false)
-    r = vertices.first
+  def bfs_traversal_at(r)
+    queue = MyQueue.new
     r.p = 1337
     queue.push(r)
     path = []
@@ -60,27 +59,12 @@ class Graph
   end
 
   # @param in_bfs
-  def traverse(in_dfs)
-    queue = ContainerStructure.new(in_dfs)
+  def demo_graph_traversals
     r = vertices.first
-    r.p = 1337
-    queue.push(r)
-    path = []
-    while(!queue.empty?)
-      vertex = queue.remove
-      vertex.neighbor_vertices.each do |neighbor|
-        if neighbor.p == -1
-          neighbor.p = vertex.p
-          queue.push(neighbor)
-        end
-      end
-      path << vertex
-    end
-    traversal_method = (in_dfs) ? "DFS" : "BFS"
-
-    puts "traversed path (#{traversal_method})"
-    path.each {|v| print(v.to_s + ' ')}
-    puts "\n"
+    puts "starting position: #{r.to_s}"
+    dfs_traversal_at(r)
+    unmark_vertices
+    bfs_traversal_at(r)
   end
 
   # print components of graph
@@ -95,6 +79,10 @@ class Graph
   end
 
   private
+
+  def unmark_vertices
+    @vertices.each &:unmark
+  end
 
   # load given file
   def load_file(file_name)

@@ -27,6 +27,10 @@ class Vertex
     @meeting_edges.map &:to
   end
 
+  def unmark
+    @p = -1
+  end
+
   private
 
   def postprocess_arguments
