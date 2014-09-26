@@ -7,7 +7,7 @@ Combo is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 Assuming you have successfully installed **ruby**, **rvm** and **ruby-gems** you only have to clone this repository, browse into its root directory and then simply run ````bundle````.
 
 ## Usage
-In order to run this application, type ````./combo -t TASKNUMBER```` into your console prompt - while being in the application's root directory. **TASKNUMBER** is an integer indicating the demo task to run. E.g. using a TASKNUMBER equal to **1** will run the demo of a DFS and BFS graph traversal, starting at the first vertex defined in the graph file. An optional parameter to run Combo is **-f** which specifies the name of the grap file. Keep in mind that all graph files have to stored in the folder _data/_. Currently this program prints the corresponding traversal paths into the console plus the structure of the specified graph.
+In order to run this application, type ````./combo -t TASKNUMBER```` into your console prompt - while being in the application's root directory. **TASKNUMBER** is an integer indicating the demo task to run. E.g. using a TASKNUMBER equal to **1** will run the demo of a DFS and BFS graph traversal, starting at the first vertex defined in the graph file. An optional parameter to run Combo is **-f** which specifies the name of the grap file. Keep in mind that all graph files have to stored in the folder _data/_. Currently this program prints the corresponding traversal paths into the console plus the structure of the specified graph. Please type ````./combo -h```` to see what other paramters are supported.
 
 ## Availabe task numbers:
 + **1** : BFS and DFS graph traversal demo.
