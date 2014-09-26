@@ -35,6 +35,7 @@ class Graph
     puts "traversed path (#{traversal_method})"
     path.each {|v| print(v.to_s + ' ')}
     puts "\n"
+    unmark_vertices
   end
 
   def bfs_traversal_at(r)
@@ -56,15 +57,11 @@ class Graph
     puts "traversed path (#{traversal_method})"
     path.each {|v| print(v.to_s + ' ')}
     puts "\n"
+    unmark_vertices
   end
 
-  # @param in_bfs
-  def demo_graph_traversals
-    r = vertices.first
-    puts "starting position: #{r.to_s}"
-    dfs_traversal_at(r)
-    unmark_vertices
-    bfs_traversal_at(r)
+  def retrieve_vertex(label)
+    @vertices.find { |el| el.id == label}
   end
 
   # print components of graph

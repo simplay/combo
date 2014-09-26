@@ -2,13 +2,14 @@ require_relative 'graph.rb'
 
 class Demo
 
-  attr_reader :filename, :task
+  attr_reader :filename, :task, :start
 
   DEFAULT_FILE = "graph1"
 
   def initialize(args)
     @filename = args[:filename] || DEFAULT_FILE
     @task = args[:task]
+    @start = args[:start] || "1"
     run_task
   end
 
@@ -25,7 +26,10 @@ class Demo
 
   def run_graph_traversal
     g = Graph.new("data/"+"#{@filename}")
-    g.demo_graph_traversals
+    r = g.retrieve_vertex(@start) || g.vertices.first
+    puts "starting position: #{r.to_s}"
+    g.dfs_traversal_at(r)
+    g.bfs_traversal_at(r)
   end
 
 end
