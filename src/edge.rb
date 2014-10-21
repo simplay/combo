@@ -15,11 +15,11 @@ class Edge
   end
 
   def u
-    @from.idx-1
+    @from.idx
   end
 
   def v
-    @to.idx-1
+    @to.idx
   end
 
   def to_s
