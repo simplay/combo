@@ -71,8 +71,9 @@ class Graph
     @vertices.each {|v| puts v.to_s}
     puts
     puts "#{@edges.count} edges:"
-    @edges.each {|v| puts v.to_s}
+    @edges.each {|e| puts "#{e.to_s} w: #{e.weight}"}
     puts
+
   end
 
   private
@@ -124,14 +125,23 @@ class Graph
   # a vertex builder using data from current read line.
   # @param line [String] currently read line
   def build_edge(line)
-
-
     vertices = [0,1].map do |idx|
       @vertices.select{|vertex| line[idx].eql?(vertex.id)}.first
     end
 
     vertices = sort_id_ascending_of(vertices) unless @is_directed
-    @edges.add(Edge.new(vertices.first, vertices.last, @is_directed))
+
+    if(line.count < 3)
+      @edges.add(Edge.new(vertices.first, vertices.last, @is_directed))
+    else
+      weight = line[2].to_f
+      @edges.add(Edge.new(vertices.first, vertices.last, @is_directed, weight))
+    end
+
+
+
+
+
   end
 
   # get state from graph file

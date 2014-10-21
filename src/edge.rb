@@ -1,15 +1,15 @@
 class Edge
 
-  attr_accessor :from, :to, :is_directional
+  attr_accessor :from, :to, :is_directional, :weight
 
   # @param from Vertex starting vertex
   # @param to Vertex ending vertex
   # @param is_directed Boolean is this edge directed?
-  def initialize(from, to, is_directional=false)
+  def initialize(from, to, is_directional=false, weight=1)
     @from = from
     @to = to
     @is_directional = is_directional
-
+    @weight = weight
     @from.append_edge(self)
     @to.append_edge(self) unless is_directional
   end

@@ -1,10 +1,11 @@
 require_relative 'graph.rb'
+require_relative 'adj_matrix.rb'
 
 class Demo
 
   attr_reader :filename, :task, :start
 
-  DEFAULT_FILE = "graph1"
+  DEFAULT_FILE = "graph2"
 
   def initialize(args)
     @filename = args[:filename] || DEFAULT_FILE
@@ -15,17 +16,28 @@ class Demo
 
   private
 
+  def build_graph
+    Graph.new("data/"+"#{@filename}")
+  end
+
   def run_task
     case @task
       when 1
         run_graph_traversal
+      when 2
+        run_shortest_path
       else
         puts "unknown demo task. task 1 has been loaded instead."
     end
   end
 
+  def run_shortest_path
+    g = build_graph
+    AdjMatrix.new(g)
+  end
+
   def run_graph_traversal
-    g = Graph.new("data/"+"#{@filename}")
+    g = build_graph
     r = g.retrieve_vertex(@start) || g.vertices.first
     puts "starting position: #{r.to_s}"
     g.dfs_traversal_at(r)
