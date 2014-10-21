@@ -13,22 +13,28 @@ class AdjMatrix
   ALMOST_INF = (1 << (1.size * 8 - 2) - 1)
 
   def initialize(graph)
-    vertices = graph.vertices
-    @v_count = vertices.count
+    @vertices = graph.vertices
+    @v_count = @vertices.count
 
     @schema = []
+    @next = []
+
     # init adj. mat
     @v_count.times do
       a_row = []
+      a_next_row = []
       @v_count.times do
         a_row << ALMOST_INF
+        a_next_row << nil
       end
-      schema << a_row
+      @schema << a_row
+      @next << a_next_row
     end
 
     #foreach edge label
     graph.edges.each do |edge|
       @schema[edge.u][edge.v] = edge.weight
+      @next[edge.u][edge.v] = edge.to
     end
 
     graph.vertices.each do |vertex|
@@ -41,6 +47,7 @@ class AdjMatrix
   # Floyd–Warshall algorithm
   def shortes_paths
     distances = @schema
+
     @v_count.times do |k|
       @v_count.times do |i|
         @v_count.times do |j|
@@ -51,9 +58,27 @@ class AdjMatrix
     distances
   end
 
+  # get path from a given vertex to a given vertex
+  # convention: report 'path does not exist'
+  # in case we query for path from Vertex v to Vertex v.
+  # @param from Vertex start
+  # @param to Vertex destination
+  def shortest_path(from, to)
+    u = from; v = to
+    return "does not exist" if @next[u.idx][v.idx].nil?
+    
+    path = ""
+    until(u.eql?(v))
+      u = @next[u.idx][v.idx]
+      path += (u.to_s + " ")
+    end
+    path
+  end
+
   def relax(container, i, j, k)
     if(container[i][j] > container[i][k] + container[k][j])
       container[i][j] = container[i][k] + container[k][j]
+      @next[i][j] = @next[i][k]
     end
   end
 

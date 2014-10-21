@@ -39,9 +39,11 @@ class Demo
     distances = am.shortes_paths
 
     pairs.each do |pair|
-      pair_dist = distances[pair.first.idx][pair.last.idx]
+      u = pair.first; v = pair.last
+      pair_dist = distances[u.idx][v.idx]
       pair_dist = pair_dist.eql?(AdjMatrix::ALMOST_INF) ? "inf" : pair_dist.to_s
-      puts "distance from i=#{pair.first.to_s} to j=#{pair.last.to_s}: #{pair_dist}"
+      path = am.shortest_path(u,v)
+      puts "distance from i=#{u.to_s} to j=#{v.to_s}: #{pair_dist} path: #{path}"
     end
   end
 
