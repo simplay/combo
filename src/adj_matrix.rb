@@ -14,13 +14,13 @@ class AdjMatrix
 
   def initialize(graph)
     vertices = graph.vertices
-    v_count = vertices.count
+    @v_count = vertices.count
 
     @schema = []
     # init adj. mat
-    v_count.times do
+    @v_count.times do
       a_row = []
-      v_count.times do
+      @v_count.times do
         a_row << ALMOST_INF
       end
       schema << a_row
@@ -39,7 +39,21 @@ class AdjMatrix
   end
 
   def shortes_path
+    distances = @schema
+    @v_count.times do |k|
+      @v_count.times do |i|
+        @v_count.times do |j|
+          relax(distances, i, j, k)
+        end
+      end
+    end
+    distances
+  end
 
+  def relax(container, i, j, k)
+    if(container[i][j] > container[i][k] + container[k][j])
+      container[i][j] = container[i][k] + container[k][j]
+    end
   end
 
   def to_s

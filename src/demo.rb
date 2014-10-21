@@ -33,7 +33,8 @@ class Demo
 
   def run_shortest_path
     g = build_graph
-    AdjMatrix.new(g)
+    am = AdjMatrix.new(g)
+    binding.pry
   end
 
   def run_graph_traversal
