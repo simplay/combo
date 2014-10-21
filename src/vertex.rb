@@ -1,6 +1,6 @@
 class Vertex
   
-  attr_accessor :id, :p, :meeting_edges
+  attr_accessor :id, :p, :meeting_edges, :idx
 
   def initialize(args)
     @meeting_edges = []
@@ -35,6 +35,7 @@ class Vertex
 
   def postprocess_arguments
     @p = @p.to_i
+    @idx = id.to_i
   end
   
 end

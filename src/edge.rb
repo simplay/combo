@@ -14,6 +14,14 @@ class Edge
     @to.append_edge(self) unless is_directional
   end
 
+  def u
+    @from.idx-1
+  end
+
+  def v
+    @to.idx-1
+  end
+
   def to_s
     del = "->"
     del = "<" + del unless is_directional

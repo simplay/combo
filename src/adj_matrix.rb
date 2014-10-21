@@ -26,6 +26,17 @@ class AdjMatrix
       schema << a_row
     end
     binding.pry
+    #foreach edge label
+    graph.edges.each do |edge|
+
+      @schema[edge.u][edge.v] = edge.weight
+    end
+
+
+  end
+
+  def shortes_path
+
   end
 
 
