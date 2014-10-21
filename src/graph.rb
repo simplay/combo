@@ -12,6 +12,7 @@ class Graph
   def initialize(file_name)
     @vertices = Set.new
     @edges = Set.new
+    @v_count = 0
     load_file(file_name)
     to_s
   end
@@ -119,6 +120,8 @@ class Graph
     line.each_with_index do |item, idx|
       vertex_arguments[vertex_keys[idx]] = item
     end
+    vertex_arguments[:idx] = @v_count
+    @v_count = @v_count + 1
     @vertices.add(Vertex.new(vertex_arguments))
   end
 

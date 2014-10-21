@@ -35,7 +35,6 @@ class Vertex
 
   def postprocess_arguments
     @p = @p.to_i
-    @idx = id.to_i
   end
   
 end
