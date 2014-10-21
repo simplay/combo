@@ -24,6 +24,7 @@ opt_parser = OptionParser.new do |opt|
 
   opt.on_tail("-l", "--list", "Lists all currently available demo task numbers") do
     puts "1: BFS and DFS graph traversal demo. \nNotice that, when passing a non-existing task number, demo task 1 will be loaded."
+    puts "2: List all shortest paths from any vertex to any other with corresponding distance"
     exit
   end
 

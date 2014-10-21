@@ -11,6 +11,7 @@ In order to run this application, type ````./combo -t TASKNUMBER```` into your c
 
 ## Availabe task numbers:
 + **1** : BFS and DFS graph traversal demo.
++ **2** : Compute all shortest paths and the corresponding distances from any vertex to any other for given (weighted)(directred) Graph demo.
 
 ## Contributing
 1. Fork this repository
