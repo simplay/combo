@@ -46,7 +46,7 @@ class AdjMatrix
 
   # Floyd–Warshall algorithm
   def shortes_paths
-    distances = @schema
+    distances = copied_schema
 
     @v_count.times do |k|
       @v_count.times do |i|
@@ -95,5 +95,18 @@ class AdjMatrix
     end
   end
 
+  private
+
+  def copied_schema
+    c = []
+    @v_count.times do |i|
+      c_row = []
+      @v_count.times do |j|
+        c_row << @schema[i][j]
+      end
+      c << c_row
+    end
+    c
+  end
 
 end
