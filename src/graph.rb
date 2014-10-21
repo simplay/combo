@@ -68,10 +68,13 @@ class Graph
   # print components of graph
   # i.e. its vertices and edges.
   def to_s
-    puts "#{@vertices.count} vertices:"
-    @vertices.each {|v| puts v.to_s}
+    type = (is_directed)? "directed" : "undirected"
+    puts "#{type} Graph G=(V,E,w)"
     puts
-    puts "#{@edges.count} edges:"
+    puts "#{@vertices.count} vertices V with their label values l:"
+    @vertices.each {|v| puts "#{v.to_s} l: #{v.p}"}
+    puts
+    puts "#{@edges.count} edges E with their weight w:"
     @edges.each {|e| puts "#{e.to_s} w: #{e.weight}"}
     puts
 
@@ -140,10 +143,6 @@ class Graph
       weight = line[2].to_f
       @edges.add(Edge.new(vertices.first, vertices.last, @is_directed, weight))
     end
-
-
-
-
 
   end
 
