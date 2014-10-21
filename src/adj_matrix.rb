@@ -10,6 +10,7 @@
 class AdjMatrix
 
   attr_accessor :schema
+  
   ALMOST_INF = (1 << (1.size * 8 - 2) - 1)
 
   def initialize(graph)
@@ -78,13 +79,6 @@ class AdjMatrix
     path
   end
 
-  def relax(container, i, j, k)
-    if(container[i][j] > container[i][k] + container[k][j])
-      container[i][j] = container[i][k] + container[k][j]
-      @next[i][j] = @next[i][k]
-    end
-  end
-
   def to_s
     @schema.each do |row|
       row.each do |element|
@@ -97,6 +91,17 @@ class AdjMatrix
 
   private
 
+  # update (i,j)-th element of given container
+  # if it can be relaxed
+  def relax(container, i, j, k)
+    if(container[i][j] > container[i][k] + container[k][j])
+      container[i][j] = container[i][k] + container[k][j]
+      @next[i][j] = @next[i][k]
+    end
+  end
+
+  # copy each value in the :schema into
+  # a new instantiated 2d array.
   def copied_schema
     c = []
     @v_count.times do |i|
