@@ -38,12 +38,13 @@ class Demo
     am = AdjMatrix.new(g)
     distances = am.shortes_paths
 
+    puts "All shortest paths for each vertex pair (i,j):"
     pairs.each do |pair|
       u = pair.first; v = pair.last
       pair_dist = distances[u.idx][v.idx]
       pair_dist = pair_dist.eql?(AdjMatrix::ALMOST_INF) ? "inf" : pair_dist.to_s
       path = am.shortest_path(u,v)
-      puts "distance from i=#{u.to_s} to j=#{v.to_s}: #{pair_dist} path: #{path}"
+      puts "Distance from vertex i=#{u.to_s} to vertex j=#{v.to_s}: #{pair_dist} path: #{path}"
     end
   end
 

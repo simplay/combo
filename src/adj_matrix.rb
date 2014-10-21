@@ -66,12 +66,15 @@ class AdjMatrix
   def shortest_path(from, to)
     u = from; v = to
     return "does not exist" if @next[u.idx][v.idx].nil?
-    
-    path = ""
+
+    path = ("["+u.to_s + ",")
+
     until(u.eql?(v))
       u = @next[u.idx][v.idx]
-      path += (u.to_s + " ")
+      path += (u.to_s + ",")
     end
+    path = path[0..path.size-2]
+    path += "]"
     path
   end
 
