@@ -33,8 +33,16 @@ class Demo
 
   def run_shortest_path
     g = build_graph
+    vertex_indices = g.vertices.select &:idx
+    pairs = vertex_indices.product(vertex_indices)
     am = AdjMatrix.new(g)
-    binding.pry
+    distances = am.shortes_paths
+
+    pairs.each do |pair|
+      pair_dist = distances[pair.first.idx][pair.last.idx]
+      pair_dist = pair_dist.eql?(AdjMatrix::ALMOST_INF) ? "inf" : pair_dist.to_s
+      puts "distance from i=#{pair.first.to_s} to j=#{pair.last.to_s}: #{pair_dist}"
+    end
   end
 
   def run_graph_traversal

@@ -38,7 +38,8 @@ class AdjMatrix
 
   end
 
-  def shortes_path
+  # Floyd–Warshall algorithm
+  def shortes_paths
     distances = @schema
     @v_count.times do |k|
       @v_count.times do |i|
